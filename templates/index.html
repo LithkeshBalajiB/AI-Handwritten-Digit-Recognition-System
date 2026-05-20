@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MNIST Digit Recognizer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Handwritten Digit Recognizer</h1>
+      <p class="subtitle">Draw a digit (0–9) or upload an image. The model predicts in real time.</p>
+    </header>
+
+    <section class="grid">
+      <!-- Canvas card -->
+      <div class="card">
+        <h2>Draw</h2>
+        <canvas id="canvas" width="280" height="280"></canvas>
+        <div class="actions">
+          <button id="clearBtn" class="btn secondary">Clear Canvas</button>
+          <button id="predictBtn" class="btn primary">Predict</button>
+        </div>
+        <label class="upload">
+          Or upload an image:
+          <input type="file" id="fileInput" accept="image/*" />
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="realtimeToggle" checked />
+          Real-time prediction while drawing
+        </label>
+      </div>
+
+      <!-- Result card -->
+      <div class="card">
+        <h2>Prediction</h2>
+        <div class="result">
+          <div class="digit" id="digit">–</div>
+          <div class="confidence">
+            Confidence: <span id="confidence">—</span>
+          </div>
+        </div>
+
+        <h3>Probabilities</h3>
+        <div class="bars" id="bars">
+          <!-- bars injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <small>Trained on MNIST · TensorFlow / Keras · Flask</small>
+    </footer>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
